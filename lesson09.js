@@ -52,7 +52,6 @@ let appData = {
         
         appData.getExpenses();
         appData.getIncome();
-        //appData.getTargetMonth(targetAmount,appData.budgetMonth);
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.getBudget();
@@ -148,7 +147,6 @@ let appData = {
         });
     },
     getExpensesMonth: function () {
-        
         /*for (let key in appData.expense) {
             appData.expensesMonth += +appData.expense[key];
         }*/
@@ -158,7 +156,6 @@ let appData = {
         for (let key in appData.expense) {
             summ = parseInt(appData.expense[key]);
             dop += summ;
-            
         }
         return dop;
     },
