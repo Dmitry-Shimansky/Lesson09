@@ -90,7 +90,6 @@ let appData = {
                 appData.expense[itemExpenses] = cashExpenses;
             }
         });
-
     },
     addIncomeBlock: function(){
         let cloneIncomeItem = incomeItem[0].cloneNode(true);
@@ -103,31 +102,12 @@ let appData = {
     },
     getIncome: function (){
         incomeItem.forEach(function(item){
-            let itemIncome = item.querySelector('.income-title');
-            let cashIncome = item.querySelector('.income-amount');
+            let itemIncome = item.querySelector('.income-title').value;
+            let cashIncome = item.querySelector('.income-amount').value;
             if(itemIncome !== '' && cashIncome !== ''){
                 appData.income[itemIncome] = cashIncome;
             }
         });
-        /*if (confirm('Есть ли у Вас дополнительный источник заработка?')){
-            let itemIncome = prompt('Какой у Вас доплнительный заработок?', 'Хипую');
-
-            while (parseInt(itemIncome)){
-                itemIncome = prompt('Какой у Вас доплнительный заработок?');
-            }
-
-            let cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?', 759);
-
-            while (isNaN(cashIncome) || cashIncome === '' || cashIncome === null) {
-                cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?');
-                }
-
-            appData.income[itemIncome] = cashIncome;
-        }
-
-        for(let key in appData.income){
-            appData.incomeMonth += +appData.income[key]
-        }*/
     },
     getAddExpenses: function (){
         let addExpenses = additionalExpItem.value.split(',');
@@ -159,6 +139,18 @@ let appData = {
         }
         return dop;
     },
+    getIncomeMonth: function(){
+        /*for (let key in appData.income) {
+            appData.incomeMonth += +appData.income[key];
+        }*/
+        let summ=0,
+            dop=0;
+        for (let key in appData.income) {
+            summ = parseInt(appData.income[key]);
+            dop += summ;
+        }
+        return dop;
+    },
     getStatusIncome: function(){
         if (appData.budgetDay >= 1200) {
             return ('У вас высокий уровень дохода');
@@ -171,7 +163,7 @@ let appData = {
         }
     },
     getBudget: function(){
-        appData.budgetMonth = appData.budget + appData.incomeMonth - appData.getExpensesMonth();
+        appData.budgetMonth = appData.budget + appData.getIncomeMonth() - appData.getExpensesMonth();
         appData.budgetDay = Math.floor(appData.budgetMonth / 30);
     },
     getTargetMonth: function(){
