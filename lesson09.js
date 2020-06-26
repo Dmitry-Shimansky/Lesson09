@@ -54,6 +54,8 @@ let appData = {
         appData.getIncome();
         appData.getAddExpenses();
         appData.getAddIncome();
+        appData.getExpensesMonth();
+        appData.getIncomeMonth();
         appData.getBudget();
 
         appData.showResult();
@@ -127,29 +129,29 @@ let appData = {
         });
     },
     getExpensesMonth: function () {
-        /*for (let key in appData.expense) {
+        for (let key in appData.expense) {
             appData.expensesMonth += +appData.expense[key];
-        }*/
+        }
 
-        let summ=0,
+        /*let summ=0,
             dop=0;
         for (let key in appData.expense) {
             summ = parseInt(appData.expense[key]);
             dop += summ;
         }
-        return dop;
+        return dop;*/
     },
     getIncomeMonth: function(){
-        /*for (let key in appData.income) {
+        for (let key in appData.income) {
             appData.incomeMonth += +appData.income[key];
-        }*/
-        let summ=0,
+        }
+        /*let summ=0,
             dop=0;
         for (let key in appData.income) {
             summ = parseInt(appData.income[key]);
             dop += summ;
         }
-        return dop;
+        return dop;*/
     },
     getStatusIncome: function(){
         if (appData.budgetDay >= 1200) {
@@ -163,17 +165,11 @@ let appData = {
         }
     },
     getBudget: function(){
-        appData.budgetMonth = appData.budget + appData.getIncomeMonth() - appData.getExpensesMonth();
+        appData.budgetMonth = appData.budget + appData.incomeMonth - appData.expensesMonth;
         appData.budgetDay = Math.floor(appData.budgetMonth / 30);
     },
     getTargetMonth: function(){
-        /*let monthCount = a/b;
-        if (monthCount >= 0) {
-            console.log('Цель будет достигнута ' + Math.ceil(monthCount) + ' months');
-        } else {
-            console.log('Цель не будет достигнута ' + Math.ceil(monthCount) + ' months');
-        }*/
-            return targetAmount.value/appData.budgetMonth;
+        return targetAmount.value/appData.budgetMonth;
     },
     getInfoDeposit: function(){
         if(appData.deposit){
