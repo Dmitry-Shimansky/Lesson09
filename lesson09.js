@@ -25,7 +25,7 @@ let salaryAmount = document.querySelector('.salary-amount'),
     incomeItem = document.querySelectorAll('.income-items'),
     inputTypeText = document.querySelectorAll('input[type="text"]'),
     cancelBtn = document.getElementById('cancel');
-    console.log(inputTypeText);
+    
     let isNumber = function(n){
         return !isNaN(parseFloat(n)) && isFinite(n)
     };
@@ -60,7 +60,10 @@ let appData = {
         this.getBudget();
 
         this.showResult();
+        inputTypeText = document.querySelectorAll('input[type="text"]');
         inputTypeText.forEach(item => {item.disabled = true});
+        plusIncome.disabled = true;
+        plusExpensesAdd.disabled = true;
         startBtn.style.display = "none";
         cancelBtn.style.display = 'block';
     },
@@ -101,7 +104,7 @@ let appData = {
         let cloneIncomeItem = incomeItem[0].cloneNode(true);
         incomeItem[0].parentNode.insertBefore(cloneIncomeItem, plusIncome);
         incomeItem = document.querySelectorAll('.income-items');
-
+        
         if(incomeItem.length === 3){
             plusIncome.style.display = 'none';
         }
@@ -220,7 +223,8 @@ let appData = {
         checkBox.checked = false;
         startBtn.style.display = 'block';
         cancelBtn.style.display = 'none';
-        
+        plusIncome.disabled = false;
+        plusExpensesAdd.disabled = false;
     }
 };
 
