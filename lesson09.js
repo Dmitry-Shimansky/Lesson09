@@ -25,7 +25,7 @@ let salaryAmount = document.querySelector('.salary-amount'),
     incomeItem = document.querySelectorAll('.income-items'),
     inputTypeText = document.querySelectorAll('input[type="text"]'),
     cancelBtn = document.getElementById('cancel');
-    
+    console.log(inputTypeText);
     let isNumber = function(n){
         return !isNaN(parseFloat(n)) && isFinite(n)
     };
@@ -51,7 +51,6 @@ let appData = {
     deposit: false,
     start: function(){
         this.budget = +salaryAmount.value;
-        console.log(this);
         this.getExpenses();
         this.getIncome();
         this.getAddExpenses();
@@ -74,7 +73,6 @@ let appData = {
         targetMonthValue.value = this.getTargetMonth();
         incomePeriodValue.value = this.calcSavedMoney();
         periodSelect.addEventListener('input', this.dynamicIncom);
-        console.log(targetMonthValue.value);
     },
     dynamicIncom: function(event){
             incomePeriodValue.value = appData.calcSavedMoney();
@@ -205,20 +203,21 @@ let appData = {
     },
     reset: function(){
         inputTypeText.forEach(item => {item.value = ''});
-        appData.budget = 0,
-        appData.budgetDay = 0,
-        appData.budgetMonth = 0,
-        appData.expensesMonth = 0,
-        appData.income = {},
-        appData.incomeMonth = 0,
-        appData.addIncome = [],
-        appData.expense = {},
-        appData.addExpenses = [],
-        appData.percentDeposit = 0,
-        appData.moneyDeposit = 0,
-        appData.deposit = false,
-        appData.showResult();
+        appData.budget = 0;
+        appData.budgetDay = 0;
+        appData.budgetMonth = 0;
+        appData.expensesMonth = 0;
+        appData.income = {};
+        appData.incomeMonth = 0;
+        appData.addIncome = [];
+        appData.expense = {};
+        appData.addExpenses = [];
+        appData.percentDeposit = 0;
+        appData.moneyDeposit = 0;
+        appData.deposit = false;
+        //appData.showResult();
         inputTypeText.forEach(item => {item.disabled = false});
+        checkBox.checked = false;
         startBtn.style.display = 'block';
         cancelBtn.style.display = 'none';
         
