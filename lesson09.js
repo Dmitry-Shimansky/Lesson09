@@ -67,7 +67,6 @@ let appData = {
         startBtn.style.display = "none";
         cancelBtn.style.display = 'block';
         checkBox.disabled = true;
-        periodSelect.disabled = true;
     },
     showResult: function(){
         budgetMonthValue.value = this.budgetMonth;
@@ -223,6 +222,7 @@ let appData = {
         //appData.showResult();
         inputTypeText.forEach(item => {item.disabled = false});
         checkBox.checked = false;
+        checkBox.disabled = false;
         startBtn.style.display = 'block';
         cancelBtn.style.display = 'none';
         plusIncome.disabled = false;
