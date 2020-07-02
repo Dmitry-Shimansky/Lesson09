@@ -66,6 +66,8 @@ let appData = {
         plusExpensesAdd.disabled = true;
         startBtn.style.display = "none";
         cancelBtn.style.display = 'block';
+        checkBox.disabled = true;
+        periodSelect.disabled = true;
     },
     showResult: function(){
         budgetMonthValue.value = this.budgetMonth;
@@ -104,7 +106,7 @@ let appData = {
         let cloneIncomeItem = incomeItem[0].cloneNode(true);
         incomeItem[0].parentNode.insertBefore(cloneIncomeItem, plusIncome);
         incomeItem = document.querySelectorAll('.income-items');
-        
+        console.log(incomeItem);
         if(incomeItem.length === 3){
             plusIncome.style.display = 'none';
         }
@@ -225,6 +227,20 @@ let appData = {
         cancelBtn.style.display = 'none';
         plusIncome.disabled = false;
         plusExpensesAdd.disabled = false;
+        periodSelect.value = 1;
+        document.querySelector('.period-amount').textContent = '1';
+        expensesItems.forEach( (item, index) => {
+            if (index > 0) {
+                item.remove()
+            }
+       });
+        plusExpensesAdd.style.display = 'block';
+        incomeItem.forEach( (item, index) => {
+            if (index > 0) {
+                item.remove()
+            }
+       });
+       plusIncome.style.display = 'block';
     }
 };
 
