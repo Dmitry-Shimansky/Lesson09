@@ -1,6 +1,5 @@
 'use strict';
-
-let startBtn = document.getElementById('start'),
+const startBtn = document.getElementById('start'),
     plusIncome = document.getElementsByClassName('btn_plus income_add')[0],
     plusExpensesAdd = document.getElementsByClassName('btn_plus expenses_add')[0],
     checkBox = document.querySelector('#deposit-check'),
@@ -23,8 +22,8 @@ let startBtn = document.getElementById('start'),
     incomeTitle = document.querySelector('input.income-title'),
     salaryAmount = document.querySelector('.salary-amount'),
     incomeItem = document.querySelectorAll('.income-items'),
-    inputTypeText = document.querySelectorAll('input[type="text"]'),
     cancelBtn = document.getElementById('cancel');
+let inputTypeText = document.querySelectorAll('input[type="text"]');
     
     const isNumber = function(n){
         return !isNaN(parseFloat(n)) && isFinite(n)
@@ -50,7 +49,6 @@ class AppData {
         this.deposit = false;
     }
     start(){
-        console.log(this);
         this.budget = +salaryAmount.value;
         this.getExpenses();
         this.getIncome();
@@ -215,8 +213,11 @@ class AppData {
         this.income = {};
         this.incomeMonth = 0;
         this.addIncome = [];
+        console.log('addIncome', this.addIncome);
         this.expense = {};
+        console.log('expenses', this.expense);
         this.addExpenses = [];
+        console.log('addExpenses reset 1', this.addExpenses);
         this.percentDeposit = 0;
         this.moneyDeposit = 0;
         this.deposit = false;
@@ -241,6 +242,10 @@ class AppData {
             }
         });
         plusIncome.style.display = 'block';
+        startBtn.disabled = true;
+        salaryAmount.addEventListener('input', function(event){
+        startBtn.disabled = !isNumber(event.target.value);
+        });
     }
     
     eventListeners() {
@@ -253,7 +258,7 @@ class AppData {
         
         periodSelect.addEventListener('input', this.displayPeriod);
         
-        cancelBtn.addEventListener('click', this.reset);
+        cancelBtn.addEventListener('click', this.reset.bind(this));
     }
 };
 
