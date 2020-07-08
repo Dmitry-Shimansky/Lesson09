@@ -16,14 +16,14 @@ const startBtn = document.getElementById('start'),
     depositAmount = document.querySelector('.deposit-amount'),
     depositPercent = document.querySelector('.deposit-percent'),
     additionalExpItem = document.querySelector('.additional_expenses-item'),
-    expensesItems = document.querySelectorAll('.expenses-items'),
     expensesTitle = document.querySelector('input.expenses-title'),
     incomeAmount = document.querySelector('.income-amount'),
     incomeTitle = document.querySelector('input.income-title'),
     salaryAmount = document.querySelector('.salary-amount'),
-    incomeItem = document.querySelectorAll('.income-items'),
     cancelBtn = document.getElementById('cancel');
-let inputTypeText = document.querySelectorAll('input[type="text"]');
+let inputTypeText = document.querySelectorAll('input[type="text"]'),
+    incomeItem = document.querySelectorAll('.income-items'),
+    expensesItems = document.querySelectorAll('.expenses-items');
     
     const isNumber = function(n){
         return !isNaN(parseFloat(n)) && isFinite(n)
@@ -67,6 +67,7 @@ class AppData {
         checkBox.disabled = true;
     }
     showResult(){
+        
         budgetMonthValue.value = this.budgetMonth;
         budgetDayValue.value = this.budgetDay;
         expensesMonthValue.value = this.expensesMonth;
@@ -92,6 +93,7 @@ class AppData {
     }
     
     getExpenses(){
+        debugger;
         expensesItems.forEach((item) => {
             let itemExpenses = item.querySelector('.expenses-title').value;
             let cashExpenses = item.querySelector('.expenses-amount').value;
